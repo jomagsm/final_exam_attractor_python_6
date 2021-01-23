@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Message{% endblock %}
+
+{% block content %}
+    <div class="box">
+    <p>Автор: {{ message.author }}</p>
+        <p>Получатель:  {{ message.recipient }}</p>
+        <p>Сообщение: {{ message.description }}</p>
+    </div>
+{% endblock %}

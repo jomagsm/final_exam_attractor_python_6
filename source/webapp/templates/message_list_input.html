@@ -18,15 +18,21 @@
         <tr>
             <th scope="col">Отправитель</th>
             <th scope="col">Просморт</th>
+            <th scope="col">Время</th>
         </tr>
         </thead>
         {% for message in messages %}
             <tbody>
             <tr>
-                <th scope="row" id="id_journal_name">{{ message.author }}</th>
+                <th scope="row"><a href="{% url 'accounts:detail' message.author.pk %}">{{ message.author }}</a></th>
+                <td><a href="{% url 'webapp:message_detail' message.pk %}">
+                <button type="button" class="btn btn-danger ml-3"> {% trans 'Просмотр'%}</button></a></td>
+                <th scope="row" >{{ message.created_at}}</th>
             </tr>
+
             </tbody>
 
         {% endfor %}
     </table>
+        {% include 'partial/pagination.html' %}
 {% endblock %}

@@ -7,6 +7,8 @@ from webapp.models import Message
 class MessageInboxListView(LoginRequiredMixin, ListView):
     template_name = 'message_list_input.html'
     context_object_name = 'messages'
+    paginate_by = 5
+    paginate_orphans = 4
 
     def get_queryset(self):
         queryset = Message.objects.all().filter(recipient=self.request.user).order_by('-pk')
@@ -14,8 +16,9 @@ class MessageInboxListView(LoginRequiredMixin, ListView):
 
 class MessageOutListView(LoginRequiredMixin, ListView):
     template_name = 'message_list.html'
-    # queryset = Message.objects.all().filter(recipient=)
     context_object_name = 'messages'
+    paginate_by = 5
+    paginate_orphans = 4
 
     def get_queryset(self):
         queryset = Message.objects.all().filter(author=self.request.user).order_by('-pk')

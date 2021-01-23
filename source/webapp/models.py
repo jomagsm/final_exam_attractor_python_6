@@ -8,3 +8,4 @@ class Message(models.Model):
     recipient = models.ForeignKey(get_user_model(), related_name='recipient_message',
                                                    on_delete=models.CASCADE, verbose_name='Получатель')
     description = models.TextField(max_length=2000, verbose_name='Текст сообщения')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=('Время создания'))
