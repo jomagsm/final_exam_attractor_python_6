@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
-from django.views.generic import View, FormView, DetailView, CreateView, UpdateView
+from django.views.generic import View, FormView, DetailView, CreateView, UpdateView, ListView
 from django.conf import settings
 
 from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, \
@@ -17,6 +17,14 @@ from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from .models import AuthToken, Profile
 
 
+
+class UserListView(ListView):
+    template_name = 'user_list.html'
+    queryset = Profile.objects.all().filter()
+    context_object_name = 'users'
+    # permission_required = 'products.can_view_product'
+    paginate_by = 10
+    paginate_orphans = 9
 
 
 class RegisterView(CreateView):
@@ -27,7 +35,7 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         if settings.ACTIVATE_USERS_EMAIL:
-            return redirect('webapp:index')
+            return redirect('accounts:index')
         else:
             login(self.request, user)
             return redirect(self.get_success_url())
