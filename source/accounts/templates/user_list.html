@@ -5,6 +5,10 @@
 
 {% block content %}
     {% csrf_token %}
+    <form class="form-inline my-2 my-lg-0"  method="get">
+    <input type="text" id="name" name="name" required>
+    <button class="btn btn-info my-2 my-sm-0" type="submit">{% trans 'Поиск'%}</button>
+</form>
     <h1>Пользователи:</h1>
     <div class="row">
     {% for user in users %}
