@@ -17,7 +17,6 @@ from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from .models import AuthToken, Profile
 
 
-
 class UserListView(ListView):
     template_name = 'user_list.html'
     queryset = Profile.objects.all().filter()
@@ -34,6 +33,7 @@ class UserListView(ListView):
         else:
             queryset = Profile.objects.all()
         return queryset
+
 
 class RegisterView(CreateView):
     model = User
@@ -55,6 +55,8 @@ class RegisterView(CreateView):
         if not next_url:
             next_url = reverse('accounts:index')
         return next_url
+
+# class FrendsCreateView(CreateView):
 
 
 class RegisterActivateView(View):

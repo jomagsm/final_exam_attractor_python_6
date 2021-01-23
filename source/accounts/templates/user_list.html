@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    {% csrf_token %}
     <h1>Пользователи:</h1>
     <div class="row">
     {% for user in users %}
@@ -15,8 +16,8 @@
         {% endif %}
         <div class="card-body">
         <h5 class="card-title">{{ user.user.first_name }} {{ user.user.last_name }}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <a href="{% url "accounts:detail" user.user.pk %}" class="btn btn-primary">Профиль</a>
+        <a class="btn btn-outline-success" id="{{user.user.pk}}">Добавить в друзья</a>
         </div>
         </div>
         </div>
@@ -26,4 +27,7 @@
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}
     {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/add_friends.js' %}"></script>
 {% endblock %}
