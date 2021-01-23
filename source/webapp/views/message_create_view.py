@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView
 
@@ -13,10 +14,10 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         recipient = self.kwargs.get('pk')
-        Message.objects.create(author=self.request.user,
+        Message.objects.create(author_id=self.request.user.pk,
                                recipient_id=recipient,
                                description=form.data['description'])
-        return super().form_valid(form)
+        return redirect(self.get_success_url())
 
-    # def get_success_url(self):
-        # return reverse('products:product_list')
+    def get_success_url(self):
+        return reverse('webapp:message_out')

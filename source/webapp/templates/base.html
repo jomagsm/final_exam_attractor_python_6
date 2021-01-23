@@ -19,6 +19,8 @@
             <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'accounts:index'%}">Главная</a>
                 {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'webapp:message_inbox'%}">Входящии</a>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'webapp:message_out'%}">Исходящии</a>
                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">Профиль</a>
                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:change' request.user.pk %}">Редактировать</a>
                         </li>

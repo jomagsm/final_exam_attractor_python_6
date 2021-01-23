@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Сообщения' %}
+{% endblock %}
+{% block styles %}
+{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    {% load i18n %}
+    <h3 class="mb-5 mt-4" align="center">
+        <b>{% trans 'Входящии' %}</b>
+    </h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Отправитель</th>
+            <th scope="col">Просморт</th>
+        </tr>
+        </thead>
+        {% for message in messages %}
+            <tbody>
+            <tr>
+                <th scope="row" id="id_journal_name">{{ message.author }}</th>
+            </tr>
+            </tbody>
+
+        {% endfor %}
+    </table>
+{% endblock %}
