@@ -124,8 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'webapp:index'
-LOGOUT_REDIRECT_URL = 'webapp:index'
+LOGIN_REDIRECT_URL = 'accounts:index'
+LOGOUT_REDIRECT_URL = 'accounts:index'
 
 LOGIN_URL = 'accounts:login'
 

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 
 {% block title %}Пользователь{% endblock %}
 
@@ -10,25 +12,24 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
-{#    {% if user_obj.user_favorites.all.len > 0 %}#}
+     <h4 class="mb-4 mt-5" align="center"><b>{% trans 'Профиль ' %}</b></h4>
+    <div class="box">
+  <div class="row no-gutters">
+    <div>
 
-{#    {% endif %}#}
-    <p>Имя пользователя: {{ user_obj.username }}</p>
-    <p>Имя: {{ user_obj.first_name }}</p>
-    <p>Фамилия: {{ user_obj.last_name }}</p>
-    <p>Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
-    <p>Почта: {{ user_obj.email }}</p>
-        <p>Избранные фото:</p>
-        {% for favorites in user_obj.user_favorites.all %}
-        <img class="avatar" src="{{ favorites.photo.image.url }}" width="250" height="250" alt="user picture">
-                        <h5 class="card-title">{{ favorites.photo.author }}</h5>
-                <p class="card-text">{{ favorites.photo.signature }}</p>
-                <p class="card-text"><small class="text-muted">{{ favorites.photo.created_at }}</small></p>
-        {% empty %}
-            <p>Нет избраных фото</p>
-    {% endfor %}
-
-{#    <h2 class="text-center clear">Статьи автора:</h2>#}
-{#    {% include 'partial/article_list.html' %}#}
+    {% if user_obj.profile.avatar %}
+    <img src="{{ user_obj.profile.avatar.url }}" width="auto" height="200" alt="guest_img" align="left" vspace="5" hspace="10">
+        {% else %}
+        <img src="{% static "img/NoAvatar.png" %}" width="160" height="200" alt="guest_img" align="left" vspace="5" hspace="10" alt="quest_img">
+        {% endif %}
+    </div>
+    <div class="ml-5 mr-5 w-75 p-3" style="word-wrap:break-word;">
+        <p class="card-text" ><b>{% trans 'Имя пользователя: ' %}</b>{{ user_obj.username }}</p>
+        <p class="card-text"><b>{% trans 'Имя: ' %}</b>{{ user_obj.first_name }}</p>
+        <p class="card-text"><b>{% trans 'Фамилия: ' %}</b>{{ user_obj.last_name }}</p>
+        <p class="card-text"><b>{% trans 'Дата рождения: ' %}</b> {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
+        <p class="card-text"><b>{% trans 'Почта: ' %}</b>{{ user_obj.email }}</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

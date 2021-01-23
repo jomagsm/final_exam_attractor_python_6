@@ -45,7 +45,7 @@ class RegisterView(CreateView):
         if not next_url:
             next_url = self.request.POST.get('next')
         if not next_url:
-            next_url = reverse('webapp:index')
+            next_url = reverse('accounts:index')
         return next_url
 
 
@@ -56,7 +56,7 @@ class RegisterActivateView(View):
             if token.is_alive():
                 self.activate_user(token)
             token.delete()
-        return redirect('webapp:index')
+        return redirect('accounts:index')
 
     def activate_user(self, token):
         user = token.user
@@ -164,7 +164,7 @@ class UserPasswordChangeView(LoginRequiredMixin, UpdateView):
 class UserPasswordResetEmailView(FormView):
     form_class = PasswordResetEmailForm
     template_name = 'password_reset_email.html'
-    success_url = reverse_lazy('webapp:index')
+    success_url = reverse_lazy('accounts:index:index')
 
     def form_valid(self, form):
         form.send_email()
