@@ -21,9 +21,8 @@ class UserListView(ListView):
     template_name = 'user_list.html'
     queryset = Profile.objects.all().filter()
     context_object_name = 'users'
-    # permission_required = 'products.can_view_product'
-    paginate_by = 10
-    paginate_orphans = 9
+    paginate_by = 2
+    paginate_orphans = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -76,26 +75,16 @@ class RegisterActivateView(View):
         login(self.request, user)
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     model = get_user_model()
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
-    paginate_related_by = 5
+    paginate_related_by = 2
     paginate_related_orphans = 0
 
     def get_context_data(self, **kwargs):
         friends = Friend.objects.filter(user=self.object)
         kwargs['friends'] = friends
-        # friends =
-        # articles = self.object.articles.order_by('-created_at')
-        # paginator = Paginator(articles, self.paginate_related_by, orphans=self.paginate_related_orphans)
-        # page_number = self.request.GET.get('page', 1)
-        # page = paginator.get_page(page_number)
-        # kwargs['page_obj'] = page
-        # kwargs['articles'] = page.object_list
-        # kwargs['is_paginated'] = page.has_other_pages()
-        # if self.object == self.request.user:   # на странице пользователя показываем
-        #     kwargs['show_mass_delete'] = True  # массовое удаление только владельцу
         return super().get_context_data(**kwargs)
 
 

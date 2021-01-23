@@ -47,7 +47,9 @@
         <div class="card-body">
         <h5 class="card-title">{{ user.friend.first_name }} {{ user.friend.last_name }}</h5>
         <a href="{% url "accounts:detail" user.friend.pk %}" class="btn btn-primary">Профиль</a>
+            {% if request.user.is_authenticated %}
         <a class="btn btn-outline-dark" id="{{user.friend.pk}}">Удалить из друзей</a>
+            {% endif %}
         </div>
         </div>
         </div>
