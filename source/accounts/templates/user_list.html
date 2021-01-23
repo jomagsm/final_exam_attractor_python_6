@@ -3,7 +3,6 @@
 {% block content %}
     <h1>Пользователи:</h1>
     {% if request.user %}
-        {{ request.user.pk }}
 {#                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:change' user_obj.pk %}">Редактировать</a>#}
 {#                        </li>#}
 {#                        <li class="nav-item"><a class="nav-link" href="{% url "accounts:password_change" %}">Смена#}

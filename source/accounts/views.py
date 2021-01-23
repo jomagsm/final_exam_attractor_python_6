@@ -26,6 +26,14 @@ class UserListView(ListView):
     paginate_by = 10
     paginate_orphans = 9
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        request_path = str(self.request).split('?')
+        if self.request.user.is_authenticated:
+            queryset = Profile.objects.all().exclude(pk=self.request.user.pk)
+        else:
+            queryset = Profile.objects.all()
+        return queryset
 
 class RegisterView(CreateView):
     model = User
