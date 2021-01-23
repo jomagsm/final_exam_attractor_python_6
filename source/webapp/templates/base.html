@@ -22,33 +22,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:index'%}">Главная</a>
                 {% if request.user.is_authenticated %}
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Гости
-                    </button>
-                    <div class="dropdown-menu">
-                    {#                            {% if perms.hostelguests.can_add_guest %}#}
-                    {#                                <a class="dropdown-item" href="{% url 'hostelguests:guest_create' %}">#}
-                    {#                                    {% trans 'Добавить гостя' %}</a>#}
-                {% endif %}
-                </div>
-                </div>
-                <div class="btn-group ml-2">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Услуги
-                    </button>
-                    <div class="dropdown-menu">
-                        {#                            {% if perms.serviceexecutors.can_add_serviceexecutor %}#}
-                        {#                                <a class="dropdown-item" href="{% url 'serviceexecutors:serviceexecutor_create' %}">#}
-                        {#                                    {% trans 'Добавить поставщика' %}</a>#}
-                        {#                            {% endif %}#}
-                    </div>
-                </div>
-                {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">Профиль</a>
                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:change' request.user.pk %}">Редактировать</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{% url "accounts:password_change" %}">Смена
