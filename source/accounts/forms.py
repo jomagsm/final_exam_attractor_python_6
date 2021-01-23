@@ -10,6 +10,9 @@ from .models import AuthToken, Profile, TOKEN_TYPE_PASSWORD_RESET
 
 
 class MyUserCreationForm(UserCreationForm):
+    first_name = forms.EmailField(required=True)
+    email = forms.EmailField(required=True)
+
     class Meta(UserCreationForm.Meta):
         fields = ['username', 'password1', 'password2',
                   'first_name', 'last_name', 'email']
