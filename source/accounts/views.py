@@ -30,7 +30,7 @@ class UserListView(ListView):
         queryset = super().get_queryset()
         request_path = str(self.request).split('?')
         if self.request.user.is_authenticated:
-            queryset = Profile.objects.all().exclude(pk=self.request.user.pk)
+            queryset = Profile.objects.all().exclude(user=self.request.user)
         else:
             queryset = Profile.objects.all()
         return queryset

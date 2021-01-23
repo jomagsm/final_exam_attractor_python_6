@@ -53,3 +53,17 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+
+
+class Friend(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='user_friends',
+                             verbose_name='Пользователь')
+    friend = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='friend_friends',
+                             verbose_name='Друг')
+
+    def __str__(self):
+        return f'{self.user} - {self.friend}'
+
+    class Meta:
+        verbose_name = 'Друг'
+        verbose_name_plural = 'Друзья'
