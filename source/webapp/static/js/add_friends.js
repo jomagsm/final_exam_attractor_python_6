@@ -1,5 +1,5 @@
-const addFriends = document.getElementsByClassName('btn btn-outline-success')
-const delFriends = document.getElementsByClassName('btn btn-outline-dark')
+const addFriends = document.getElementsByClassName('btn btn-secondary btn-lg btn-block')
+const delFriends = document.getElementsByClassName('btn btn-outline-dark btn-lg btn-block')
 const addFriendUrl = 'http://localhost:8000/api/add_friends/'
 function getCookie(name) {
     let cookieValue = null;
@@ -66,6 +66,6 @@ async function del(event) {
         alert("Неправильное значение");
     }
 }
-
+console.log(addFriends)
 for (let addFriend of addFriends) {addFriend.onclick = add}
 for (let delFriend of delFriends) {delFriend.onclick = del}

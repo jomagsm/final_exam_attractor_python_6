@@ -55,8 +55,6 @@ class RegisterView(CreateView):
             next_url = reverse('accounts:index')
         return next_url
 
-# class FrendsCreateView(CreateView):
-
 
 class RegisterActivateView(View):
     def get(self, request, *args, **kwargs):
