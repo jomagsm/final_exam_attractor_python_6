@@ -1,0 +1,42 @@
+[
+{
+  "model": "webapp.message",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "recipient": 2,
+    "description": "fdsfdsfdsfdsdsfdsfdfs",
+    "created_at": "2021-01-23T13:28:25.530Z"
+  }
+},
+{
+  "model": "webapp.message",
+  "pk": 2,
+  "fields": {
+    "author": 2,
+    "recipient": 3,
+    "description": "dfdsfdsdfsdfsdfs",
+    "created_at": "2021-01-23T13:33:32.226Z"
+  }
+},
+{
+  "model": "webapp.message",
+  "pk": 3,
+  "fields": {
+    "author": 2,
+    "recipient": 3,
+    "description": "выаавыавыавы",
+    "created_at": "2021-01-23T14:08:27.595Z"
+  }
+},
+{
+  "model": "webapp.message",
+  "pk": 4,
+  "fields": {
+    "author": 2,
+    "recipient": 4,
+    "description": "ываавыавыавыавываы",
+    "created_at": "2021-01-23T14:08:39.547Z"
+  }
+}
+]
