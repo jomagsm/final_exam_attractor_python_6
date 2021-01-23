@@ -39,15 +39,15 @@
     <div class="col-sm">
         <div class="box mt-2">
         <div class="card" style="width: 18rem;">
-            {% if user.avatar %}
-         <img class="card-img-top" src="{{ user.avatar.url }}" width="auto" height="200" alt="guest_img" align="left" vspace="5" hspace="10">
+            {% if user.friend.profile.avatar %}
+         <img class="card-img-top" src="{{ user.friend.profile.avatar.url }}" width="auto" height="200" alt="guest_img" align="left" vspace="5" hspace="10">
         {% else %}
         <img class="card-img-top" src="{% static "img/NoAvatar.png" %}" width="160" height="200" alt="guest_img" align="left" vspace="5" hspace="10" alt="quest_img">
         {% endif %}
         <div class="card-body">
-        <h5 class="card-title">{{ user.user.first_name }} {{ user.user.last_name }}</h5>
-        <a href="{% url "accounts:detail" user.user.pk %}" class="btn btn-primary">Профиль</a>
-        <a class="btn btn-outline-dark" id="{{user.user.pk}}">Удалить из друзей</a>
+        <h5 class="card-title">{{ user.friend.first_name }} {{ user.friend.last_name }}</h5>
+        <a href="{% url "accounts:detail" user.friend.pk %}" class="btn btn-primary">Профиль</a>
+        <a class="btn btn-outline-dark" id="{{user.friend.pk}}">Удалить из друзей</a>
         </div>
         </div>
         </div>
@@ -59,4 +59,10 @@
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}
     {% endif %}
+{% endblock %}
+{% block scripts %}
+     <script type=text/javascript>
+        let urlDeleteFriend = "{% url 'api:del_friends' 123 %}"
+    </script>
+    <script src="{% static 'js/add_friends.js' %}"></script>
 {% endblock %}

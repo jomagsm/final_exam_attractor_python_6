@@ -17,6 +17,20 @@ class AddFrendsView(APIView):
             Friend.objects.create(user=request.user, friend=friend)
             return Response({'success': 'добавлен'}, status=status.HTTP_200_OK)
         return Response({'success': 'не добавлен'}, status=status.HTTP_200_OK)
+
+
+class DeleteFrendsView(APIView):
+    def delete(self, request, pk=None):
+        friends = get_object_or_404(Friend, user=self.request.user, friend_id=int(pk))
+        friends.delete()
+        return Response({'success': pk}, status=status.HTTP_200_OK)
+        # friend = get_object_or_404(Friend pk=int(pk))
+        # frend = User.objects.filter(pk=int(pk)))
+        # friends = get_object_or_404(Friend, user=self.request.user, )
+        # print(friends)
+        # object = self.get_object(notepad_pk)
+        # object.delete()
+        # return Response(status=status.HTTP_204_NO_CONTENT)
         # Friend(models.Model):
         # if data['serviceexecutor']:
         #     initials = data['serviceexecutor'].split(' ')

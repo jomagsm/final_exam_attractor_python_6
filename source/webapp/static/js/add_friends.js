@@ -1,4 +1,5 @@
 const addFriends = document.getElementsByClassName('btn btn-outline-success')
+const delFriends = document.getElementsByClassName('btn btn-outline-dark')
 const addFriendUrl = 'http://localhost:8000/api/add_friends/'
 function getCookie(name) {
     let cookieValue = null;
@@ -48,38 +49,23 @@ async function add(event) {
     let data = idUser.id
     try {
         let response = await makeRequest(addFriendUrl, "POST", data);
-        // TODO исправить на редирект детального просморта
-        // window.location.href = urlRedirect.replace('123', response.success);
     } catch (e) {
         alert("Неправильное значение");
     }
+}
 
-    console.log(idUser.id)}
-    // let addBtn = event.target;
-    // let url = addBtn.href;
-    // console.log(url);
-    // try {
-    //     let response = await makeRequest(url, 'POST');
-    //     console.log(response);
-    //
-    // }
-    // catch (error) {
-    //     console.log(error);
-    // }
-
+async function del(event) {
+    event.preventDefault();
+    let idUser = event.target;
+    let url = urlDeleteFriend.replace('123', idUser.id);
+    try {
+        let response = await makeRequest(url, "DELETE");
+        let friend = document.getElementById(response.success)
+        friend.parentElement.parentNode.remove()
+    } catch (e) {
+        alert("Неправильное значение");
+    }
+}
 
 for (let addFriend of addFriends) {addFriend.onclick = add}
-
-//
-// barcodeBtn.addEventListener('click', makeRequestBarcode)
-// mainProductForm.addEventListener('submit', async function (event) {
-//     event.preventDefault();
-//     try {
-//         let data = $(this).serializeJSON();
-//         let response = await makeRequest(url_write_off, "POST", data);
-//         // TODO исправить на редирект детального просморта
-//         // window.location.href = urlRedirect.replace('123', response.success);
-//     } catch (e) {
-//         alert("Неправильное значение");
-//     }
-// });
+for (let delFriend of delFriends) {delFriend.onclick = del}
