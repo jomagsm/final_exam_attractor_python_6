@@ -14,7 +14,7 @@ from django.conf import settings
 
 from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, \
     PasswordChangeForm, PasswordResetEmailForm, PasswordResetForm
-from .models import AuthToken, Profile
+from .models import AuthToken, Profile, Friend
 
 
 class UserListView(ListView):
@@ -84,6 +84,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     paginate_related_orphans = 0
 
     def get_context_data(self, **kwargs):
+        friends = Friend.objects.filter(user=self.object)
+        kwargs['friends'] = friends
+        # friends =
         # articles = self.object.articles.order_by('-created_at')
         # paginator = Paginator(articles, self.paginate_related_by, orphans=self.paginate_related_orphans)
         # page_number = self.request.GET.get('page', 1)
